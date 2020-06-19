@@ -8,19 +8,20 @@
 			</a>
 			<nav class="sidebar">
 				<ul>
-					<li><a href="<?= $base_url ?>dashboard.php">
+					<li><a <?= ($menu == 'Dashboard') ? 'class="active"' : '' ?> href="<?= $base_url ?>dashboard.php">
 						<i class="icon-menu fas fa-tachometer-alt"></i>Beranda</a>
 					</li>
-					<li><a class="drop" href="#"><i class="icon-menu fas fa-boxes"></i>Master Data</a>
-						<div class="dropdown">
+
+					<li><a class="drop <?= ($menu == 'Jurusan' || $menu == 'Jabatan') ? 'active' : '' ?>" href="#"><i class="icon-menu fas fa-boxes"></i>Master Data</a>
+						<div class="dropdown  <?= ($menu == 'Jurusan' || $menu == 'Jabatan') ? 'active-drop' : '' ?>">
 							<ul>
-								<li><a href=""><i class="icon-menu far fa-circle"></i>Menu 1</a></li>
-								<li><a href=""><i class="icon-menu far fa-circle"></i>Menu 2</a></li>
+								<li><a <?= ($menu == 'Jurusan') ? 'class="active"' : '' ?>  href="jurusan/index.php"><i class="icon-menu far fa-circle"></i>Data Jurusan</a></li>
+								<li><a <?= ($menu == 'Jabatan') ? 'class="active"' : '' ?> href=""><i class="icon-menu far fa-circle"></i>Data Jabatan</a></li>
 							</ul>
 						</div>
 					</li>
-					<li><a href=""><i class="icon-menu fas fa-users"></i>Anggota</a></li>
-					<li><a href=""><i class="icon-menu fas fa-file-invoice"></i>Kas UKM</a></li>
+					<li><a <?= ($menu == 'Anggota') ? 'class="active"' : '' ?> href=""><i class="icon-menu fas fa-users"></i>Anggota</a></li>
+					<li><a <?= ($menu == 'Kas UKM') ? 'class="active"' : '' ?> href=""><i class="icon-menu fas fa-file-invoice"></i>Kas UKM</a></li>
 				</ul>
 			</nav>
 			<div class="banner d-flex justify-content-center">
@@ -29,13 +30,13 @@
 		</div>
 		<div class="content">
 			<div class="menu d-flex justify-content-between align-items-center">
-				<span>Sabtu, 13 Juni 2020</span>
+				<span><?= tglIndo(date('Y-m-d')) ?></span>
 				<div class="d-flex align-items-center">
 					<a href="">
 						<div class="profile d-flex align-items-center">
-							<span>Yoga Permana</span>
+							<span><?= $_SESSION['nama'] ?></span>
 							<div class="img-profile">
-								<img src="img/profile/yogapermana.jpg">
+								<img src="<?= $base_url ?>public/img/profile/<?= $_SESSION['avatar'] ?>">
 							</div>
 						</div>
 					</a>

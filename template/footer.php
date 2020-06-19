@@ -5,14 +5,12 @@
 	$('.drop').click(function(){
 		if($('.dropdown').hasClass('active-drop')){
 			$('.dropdown').removeClass('active-drop');
-			$(this).removeAttr('style');
-			$('.drop svg path').removeAttr('style');
+			$(this).removeClass('active');
 		}else{
 			$('.dropdown').addClass('active-drop');
-			$(this).css({
-				"background-color" : "#27496D",
-				"color" : "#DAE1E7"
-			});
+			$('.sidebar ul li a').removeClass('active');
+			$(this).addClass('active');
+
 		}
 	});
 </script>

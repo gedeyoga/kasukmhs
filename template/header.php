@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<?= $base_url ?>public/vendor/fontawesome/css/all.min.css">
     <script src="<?= $base_url ?>public/vendor/jquery/jquery.js"></script>
     <script src="<?= $base_url ?>public/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <title>Dashboard - UKM HARDWARE SOFTWARE</title>
+    <title><?=$menu.' - '.$title ?></title>
 </head>
 <body>
 	<div class="d-flex">

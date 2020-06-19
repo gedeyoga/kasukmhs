@@ -117,7 +117,7 @@ section:nth-child(2){
 .active-drop{
 	height: auto;
 }
-.active{
+.sidebar .active{
 	background-color: #27496D;
 	color: #DAE1E7;
 }
@@ -157,7 +157,7 @@ section:nth-child(2){
 	overflow: hidden;
 }
 .menu .profile .img-profile img{
-	width: 100%;
+	width: 40px;
 }
 .data{
 	padding: 40px;
