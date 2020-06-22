@@ -15,12 +15,12 @@
 					<li><a class="drop <?= ($menu == 'Jurusan' || $menu == 'Jabatan') ? 'active' : '' ?>" href="#"><i class="icon-menu fas fa-boxes"></i>Master Data</a>
 						<div class="dropdown  <?= ($menu == 'Jurusan' || $menu == 'Jabatan') ? 'active-drop' : '' ?>">
 							<ul>
-								<li><a <?= ($menu == 'Jurusan') ? 'class="active"' : '' ?>  href="jurusan/index.php"><i class="icon-menu far fa-circle"></i>Data Jurusan</a></li>
-								<li><a <?= ($menu == 'Jabatan') ? 'class="active"' : '' ?> href=""><i class="icon-menu far fa-circle"></i>Data Jabatan</a></li>
+								<li><a <?= ($menu == 'Jurusan') ? 'class="active"' : '' ?>  href="<?= $base_url ?>jurusan/index.php"><i class="icon-menu far fa-circle"></i>Data Jurusan</a></li>
+								<li><a <?= ($menu == 'Jabatan') ? 'class="active"' : '' ?> href="<?= $base_url ?>jabatan/index.php"><i class="icon-menu far fa-circle"></i>Data Jabatan</a></li>
 							</ul>
 						</div>
 					</li>
-					<li><a <?= ($menu == 'Anggota') ? 'class="active"' : '' ?> href=""><i class="icon-menu fas fa-users"></i>Anggota</a></li>
+					<li><a <?= ($menu == 'Anggota') ? 'class="active"' : '' ?> href="<?= $base_url ?>anggota/index.php"><i class="icon-menu fas fa-users"></i>Anggota</a></li>
 					<li><a <?= ($menu == 'Kas UKM') ? 'class="active"' : '' ?> href=""><i class="icon-menu fas fa-file-invoice"></i>Kas UKM</a></li>
 				</ul>
 			</nav>

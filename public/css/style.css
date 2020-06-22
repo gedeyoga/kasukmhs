@@ -243,6 +243,9 @@ section:nth-child(2){
 .box-data .img-data img{
 	width: 100%;
 }
+.box-data .name-data{
+	width: 150px;
+}
 .box-data .name-data h6{
 	font-family: 'bold';
 }

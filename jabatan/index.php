@@ -6,19 +6,18 @@
 	is_login();
 	is_admin();
 
-	$menu = "Jurusan";
+	$menu = "Jabatan";
 	include "../template/header.php";
 	include "../template/sidebar.php";
 
 	$search = "";
 	if (isset($_GET['search'])) {
-		$search .= "WHERE namaJrs LIKE '%".$_GET['search']."%'";
+		$search .= "WHERE namaJbtn LIKE '%".$_GET['search']."%'";
 	}
-
 	$halaman = 5; //batasan halaman
 	$page  = isset($_GET['page'])? (int)$_GET["page"]:1;
 	$mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
-	$fetch = mysqli_query($conn , "SELECT * FROM jurusan ".$search." ORDER BY idJrs DESC LIMIT $mulai, $halaman");
+	$fetch = mysqli_query($conn , "SELECT * FROM jabatan ".$search." ORDER BY idJbtn DESC LIMIT $mulai, $halaman");
 	$total = mysqli_num_rows($fetch);
 	$pages = ceil($total/$halaman); 
 
@@ -52,10 +51,10 @@
 	    		?>
 	    			<tr>
 				      <th scope="row"><?= $no ?></th>
-				      <td><?= $data['namaJrs'] ?></td>
+				      <td><?= $data['namaJbtn'] ?></td>
 				      <td>
-				      	<button class="btn btn-primary btn-sm" onclick="edit(<?= $data['idJrs'] ?>)" data-toggle="modal" data-target="#formEdit"><i class="fas fa-pencil-alt"></i></button>
-				      	<a class="btn btn-danger btn-sm" href="<?= $base_url ?>jurusan/proses/delete.php?id=<?= $data['idJrs'] ?>"><i class="fas fa-trash"></i></a>
+				      	<button class="btn btn-primary btn-sm" onclick="edit(<?= $data['idJbtn'] ?>)" data-toggle="modal" data-target="#formEdit"><i class="fas fa-pencil-alt"></i></button>
+				      	<a class="btn btn-danger btn-sm" href="<?= $base_url ?>jabatan/proses/delete.php?id=<?= $data['idJbtn'] ?>"><i class="fas fa-trash"></i></a>
 				      </td>
 				    </tr>
 	    		<?php
@@ -97,11 +96,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= $base_url ?>jurusan/proses/add-process.php" method="post">
+      <form action="<?= $base_url ?>jabatan/proses/add-process.php" method="post">
 	      <div class="modal-body">
 			  <div class="form-group">
-			    <label>Nama Jurusan</label>
-			    <input name="namaJrs" type="text" class="form-control" placeholder="Contoh: Teknik Informatika" required>
+			    <label>Nama Jabatan</label>
+			    <input name="namaJbtn" type="text" class="form-control" placeholder="Contoh: Ketua" required>
 			  </div>
 	      </div>
 	      <div class="modal-footer">
@@ -122,12 +121,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= $base_url ?>jurusan/proses/edit-process.php" method="post">
+      <form action="<?= $base_url ?>jabatan/proses/edit-process.php" method="post">
 	      <div class="modal-body">
 			  <div class="form-group">
-			    <label>Nama Jurusan</label>
-			    <input id="namaJrs" name="namaJrs" type="text" class="form-control" placeholder="Contoh: Teknik Informatika" required>
-			    <input id="idJrs" name="idJrs" type="hidden" class="form-control">
+			    <label>Nama Jabatan</label>
+			    <input id="namaJbtn" name="namaJbtn" type="text" class="form-control" placeholder="Contoh: Ketua" required>
+			    <input id="idJbtn" name="idJbtn" type="hidden" class="form-control">
 			  </div>
 	      </div>
 	      <div class="modal-footer">
@@ -142,8 +141,8 @@
 		$.get("proses/edit.php", {id: id}) // request get -> menentukan nama url -> data yang dikirimkan
 				.done(function(data){
 					var objData = JSON.parse(data);
-					$('#namaJrs').val(objData.namaJrs);
-					$('#idJrs').val(objData.idJrs);
+					$('#namaJbtn').val(objData.namaJbtn);
+					$('#idJbtn').val(objData.idJbtn);
 				});
 	}
 </script>

@@ -55,4 +55,32 @@
 			header('location: '.$base_url);
 		}
 	}
+	function comboJurusan($check = ""){
+		global $conn;
+		$fetch = mysqli_query($conn , "SELECT * FROM jurusan");
+		$view = '<div class="form-group">';
+		$view .= '<label>Jurusan</label>';
+		$view .= '<select name="idJrs" class="form-control">';
+		while ($d = mysqli_fetch_assoc($fetch)) {
+			$select  = ($d['idJrs'] == $check) ? "selected" : "";
+			$view .= "<option value='".$d['idJrs']."' $select>".$d['namaJrs']."</option>";
+		}
+		$view .= '</select>';
+		$view .= '</div>';
+		return $view;
+	}
+	function comboJabatan($check = ""){
+		global $conn;
+		$fetch = mysqli_query($conn , "SELECT * FROM jabatan");
+		$view = '<div class="form-group">';
+		$view .= '<label>Jabatan</label>';
+		$view .= '<select name="idJbtn" class="form-control">';
+		while ($d = mysqli_fetch_assoc($fetch)) {
+			$select  = ($d['idJbtn'] == $check) ? "selected" : "";
+			$view .= "<option value='".$d['idJbtn']."' $select>".$d['namaJbtn']."</option>";
+		}
+		$view .= '</select>';
+		$view .= '</div>';
+		return $view;
+	}
 ?>
