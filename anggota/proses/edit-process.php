@@ -13,13 +13,24 @@
 
 
 		if (trim($nimMhs) && trim($namaMhs) && is_numeric($jkMhs) && is_numeric($telpMhs) && trim($emailMhs) && is_numeric($idJbtn) && is_numeric($idJrs) && trim($tglLahirMhs)) {
-			$fetch = mysqli_query($conn , "INSERT INTO mahasiswa VALUES ('$nimMhs' , '$namaMhs' , '$tglLahirMhs' , '$jkMhs' , '$telpMhs' , '$emailMhs' , '$idJbtn' , '$idJrs');");
+			$query = "UPDATE mahasiswa SET 
+					  namaMhs = '$namaMhs',
+					  tglLahirMhs = '$tglLahirMhs',
+					  jkMhs = '$jkMhs',
+					  telpMhs = '$telpMhs',
+					  emailMhs = '$emailMhs',
+					  idJbtn = '$idJbtn',
+					  idJrs = '$idJrs'
+					  WHERE nimMhs = '$nimMhs'
+			";
+			$fetch = mysqli_query($conn , $query);
 			if ($fetch) {
 				$idRole = ($idJbtn != 7) ? "1" : "2";
-				$fetch = mysqli_query($conn , "INSERT INTO users VALUES (null , '$nimMhs' , '$nimMhs' , '$idRole' , 'default.jpg');");
-				setFlashMessage('Data berhasil ditambahkan !' , 'anggota/index.php');
+
+				$fetch = mysqli_query($conn , "UPDATE users SET idRole = '$idRole' WHERE nimMhs = '$nimMhs'");
+				setFlashMessage('Data berhasil diubah !' , 'anggota/index.php');
 			}else{
-				setFlashMessage('Data gagal ditambahkan !' , 'anggota/index.php');
+				setFlashMessage('Data gagal diubah !' , 'anggota/index.php');
 			}
 		}else{
 			setFlashMessage('Silahkan periksa data anda !' , 'anggota/index.php');

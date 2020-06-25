@@ -21,7 +21,7 @@
 						</div>
 					</li>
 					<li><a <?= ($menu == 'Anggota') ? 'class="active"' : '' ?> href="<?= $base_url ?>anggota/index.php"><i class="icon-menu fas fa-users"></i>Anggota</a></li>
-					<li><a <?= ($menu == 'Kas UKM') ? 'class="active"' : '' ?> href=""><i class="icon-menu fas fa-file-invoice"></i>Kas UKM</a></li>
+					<li><a <?= ($menu == 'Kas UKM') ? 'class="active"' : '' ?> href="<?= $base_url ?>kasukm/index.php"><i class="icon-menu fas fa-file-invoice"></i>Kas UKM</a></li>
 				</ul>
 			</nav>
 			<div class="banner d-flex justify-content-center">
@@ -32,14 +32,12 @@
 			<div class="menu d-flex justify-content-between align-items-center">
 				<span><?= tglIndo(date('Y-m-d')) ?></span>
 				<div class="d-flex align-items-center">
-					<a href="">
 						<div class="profile d-flex align-items-center">
 							<span><?= $_SESSION['nama'] ?></span>
 							<div class="img-profile">
 								<img src="<?= $base_url ?>public/img/profile/<?= $_SESSION['avatar'] ?>">
 							</div>
 						</div>
-					</a>
 					<a class="logout" href="<?= $base_url ?>logout.php"><i class="icon-menu fas fa-sign-out-alt"></i></a>
 				</div>
 			</div>

@@ -37,6 +37,23 @@
 	    //untuk menampilkan hari, tanggal bulan tahun
 	    return "$hari, $tanggal $bulan $tahun";
 	}
+	function bulanTahunIndo($bulan , $tahun){
+		$bulan_array = array(
+	        '01' => 'Januari',
+	        '02' => 'Februari',
+	        '03' => 'Maret',
+	        '04' => 'April',
+	        '05' => 'Mei',
+	        '06' => 'Juni',
+	        '07' => 'Juli',
+	        '08' => 'Agustus',
+	        '09' => 'September',
+	        '10' => 'Oktober',
+	        '11' => 'November',
+	        '12' => 'Desember',
+	    );
+	    return $bulan_array[$bulan]." ".$tahun;
+	}
 	function is_login(){
 		global $base_url;
 		if (!isset($_SESSION['nim'])) {
@@ -63,7 +80,7 @@
 		$view .= '<select name="idJrs" class="form-control">';
 		while ($d = mysqli_fetch_assoc($fetch)) {
 			$select  = ($d['idJrs'] == $check) ? "selected" : "";
-			$view .= "<option value='".$d['idJrs']."' $select>".$d['namaJrs']."</option>";
+			$view .= "<option class='idJrs' value='".$d['idJrs']."' $select>".$d['namaJrs']."</option>";
 		}
 		$view .= '</select>';
 		$view .= '</div>';
@@ -77,7 +94,7 @@
 		$view .= '<select name="idJbtn" class="form-control">';
 		while ($d = mysqli_fetch_assoc($fetch)) {
 			$select  = ($d['idJbtn'] == $check) ? "selected" : "";
-			$view .= "<option value='".$d['idJbtn']."' $select>".$d['namaJbtn']."</option>";
+			$view .= "<option class='idJbtn' value='".$d['idJbtn']."' $select>".$d['namaJbtn']."</option>";
 		}
 		$view .= '</select>';
 		$view .= '</div>';

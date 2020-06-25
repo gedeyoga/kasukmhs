@@ -64,8 +64,8 @@
 						<small><?= $data['namaJbtn'] ?></small>
 					</div>
 					<div class="btn-data d-flex justify-content-end">
-						<a class="btn-tosca" href="">Profile</a>
-						<a class="btn-grey" href=""><i class="fas fa-pencil-alt"></i></a>
+						<!-- <a class="btn-tosca" href="">Profile</a> -->
+						<a class="btn-grey" href="#" data-toggle="modal" data-target="#formEdit" onclick="edit(<?= $data['nimMhs'] ?>)" ><i class="fas fa-pencil-alt"></i></a>
 						<a class="btn-red" href="proses/delete.php?id=<?= $data['nimMhs'] ?>"><i class="fas fa-trash"></i></a>
 					</div>
 				</div>
@@ -152,16 +152,42 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= $base_url ?>jurusan/proses/edit-process.php" method="post">
+      <form action="<?= $base_url ?>anggota/proses/edit-process.php" method="post">
 	      <div class="modal-body">
 			  <div class="form-group">
-			    <label>Nama Jurusan</label>
-			    <input id="namaJrs" name="namaJrs" type="text" class="form-control" placeholder="Contoh: Teknik Informatika" required>
-			    <input id="idJrs" name="idJrs" type="hidden" class="form-control">
+			    <label>NIM</label>
+			    <input id="nimMhs" name="nimMhs" type="text" class="form-control" placeholder="Contoh: 19101290" readonly="">
 			  </div>
+			  <div class="form-group">
+			    <label>Nama Mahasiswa</label>
+			    <input id="namaMhs" name="namaMhs" type="text" class="form-control" placeholder="Aristoteles Bell" required>
+			  </div>
+			  <div class="form-row">
+			    <div class="col">
+			    	<label>Jenis Kelamin</label><br>
+				    <input class="jkMhs" name="jkMhs" type="radio" value="0"><span class="ml-2">Wanita</span>
+				    <input class="jkMhs ml-4" name="jkMhs" type="radio" value="1"><span class="ml-2">Pria</span>
+			    </div>
+			    <div class="col">
+			    	<label>Tanggal Lahir</label><br>
+			    	<input id="tglLahirMhs" class="form-control" name="tglLahirMhs" type="date" value="0">
+			    </div>
+			  </div>
+			  <div class="form-row">
+			  	<div class="col">
+			    	<label>Email</label>
+			    	<input id="emailMhs" name="emailMhs" type="email" class="form-control" placeholder="example@gmail.com" required>
+			    </div>
+			    <div class="col">
+			    	<label>Telp</label>
+			    	<input id="telpMhs" name="telpMhs" type="number" class="form-control" placeholder="081xxxx" required>
+			    </div>
+			  </div>
+			  <?= comboJurusan() ?>
+			  <?= comboJabatan() ?>
 	      </div>
 	      <div class="modal-footer">
-	        <input type="submit" name="submit" class="btn btn-primary" value="Ubah Data">
+	        <input type="submit" name="submit" class="btn btn-primary" value="Ubah">
 	      </div>
   	  </form>
     </div>
@@ -172,8 +198,26 @@
 		$.get("proses/edit.php", {id: id}) // request get -> menentukan nama url -> data yang dikirimkan
 				.done(function(data){
 					var objData = JSON.parse(data);
-					$('#namaJrs').val(objData.namaJrs);
-					$('#idJrs').val(objData.idJrs);
+					$('#nimMhs').val(objData.nimMhs);
+					$('#namaMhs').val(objData.namaMhs);
+					$('#emailMhs').val(objData.emailMhs);
+					$('#tglLahirMhs').val(objData.tglLahirMhs);
+					$('#telpMhs').val(objData.telpMhs);
+					$('.jkMhs').each(function(){
+						if($(this).val() == objData.jkMhs){
+							$(this).attr('checked','checked');
+						}
+					});
+					$('.idJrs').each(function(){
+						if($(this).val() == objData.idJrs){
+							$(this).attr('selected','');
+						}
+					});
+					$('.idJbtn').each(function(){
+						if($(this).val() == objData.idJbtn){
+							$(this).attr('selected','');
+						}
+					});
 				});
 	}
 </script>
