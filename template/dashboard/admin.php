@@ -1,3 +1,11 @@
+<?php 
+	$data = [];
+	$data += mysqli_fetch_assoc(mysqli_query($conn , "SELECT SUM(jumlahByr) AS total FROM pembayaran"));
+	$data += mysqli_fetch_assoc(mysqli_query($conn , "select sum(jumlahByr) as bulan_ini from pembayaran where bulanByr = '".date('Y-m')."'"));
+	$data += mysqli_fetch_assoc(mysqli_query($conn , "SELECT COUNT(nimMhs) AS anggota_ini FROM pembayaran where bulanByr = '".date('Y-m')."'"));
+	$data += mysqli_fetch_assoc(mysqli_query($conn , "SELECT COUNT(nimMhs) AS totAnggota FROM mahasiswa"));
+
+ ?>
 			<div class="data">
 				<div class="title">
 					<h3>Beranda</h3>
@@ -19,13 +27,13 @@
 								<div class="col-6">
 									<div class="box-stats box-white">
 										<small>Pemasukan bulan ini</small>
-										<label>150,000 IDR</label>
+										<label><?= number_format($data['bulan_ini']) ?> IDR</label>
 									</div>
 								</div>
 								<div class="col-6">
 									<div class="box-stats box-white">
-										<small>Anggota belum bayar</small>
-										<label>20 orang</label>
+										<small>Jumlah belum bayar bulan ini</small>
+										<label><?= $data['anggota_ini'] ?> orang</label>
 									</div>
 								</div>
 							</div>
@@ -33,7 +41,7 @@
 								<div class="col-12">
 									<div class="box-stats box-tosca	">
 										<small>Total kas UKM</small>
-										<label>14,150,000 IDR</label>
+										<label><?= number_format($data['total']) ?> IDR</label>
 									</div>
 								</div>
 							</div>
@@ -42,7 +50,7 @@
 								<div class="col-6">
 									<div class="box-stats box-white">
 										<small>Total anggota UKM</small>
-										<label>50 orang</label>
+										<label><?= $data['totAnggota'] ?> orang</label>
 									</div>
 								</div>
 							</div>
